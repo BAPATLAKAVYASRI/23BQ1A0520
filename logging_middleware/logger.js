@@ -1,28 +1,17 @@
-import { LOG_API, TOKEN } from "./constants";
-
-export async function Log(
-  stack,
-  level,
-  packageName,
-  message
-) {
-  try {
-    const response = await fetch(LOG_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${TOKEN}`
-      },
-      body: JSON.stringify({
-        stack,
-        level,
-        package: packageName,
-        message
-      })
-    });
-
-    return await response.json();
-  } catch (error) {
-    console.error("Logging Error:", error);
-  }
+$headers = @{
+    Authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJiYXBhdGxha2F2eWFzcmlAZ21haWwuY29tIiwiZXhwIjoxNzgwNjM3MjA0LCJpYXQiOjE3ODA2MzYzMDQsImlzcyI6IkFmZm9yZCBNZWRpY2FsIFRlY2hub2xvZ2llcyBQcml2YXRlIExpbWl0ZWQiLCJqdGkiOiJiODMwNWE0Ni00MzA4LTQwYzQtYTZjYi0xNjNkNTM5YzgyM2YiLCJsb2NhbGUiOiJlbi1JTiIsIm5hbWUiOiJiYXBhdGxhIGthdnlhIHNyaSIsInN1YiI6ImJmYzc0MzA3LTAzOWEtNDIyOS1iNWE1LWJkMjY4NTE5MDg4MSJ9LCJlbWFpbCI6ImJhcGF0bGFrYXZ5YXNyaUBnbWFpbC5jb20iLCJuYW1lIjoiYmFwYXRsYSBrYXZ5YSBzcmkiLCJyb2xsTm8iOiIyM2JxMWEwNTIwIiwiYWNjZXNzQ29kZSI6IlFRZEVZeSIsImNsaWVudElEIjoiYmZjNzQzMDctMDM5YS00MjI5LWI1YTUtYmQyNjg1MTkwODgxIiwiY2xpZW50U2VjcmV0IjoicmhDc3dZWVBwWlRVS1puZiJ9.CWGTmYDmka2Xpiqhd0rasiBxQZtczu15YQX9uzgv8ns"
+    "Content-Type" = "application/json"
 }
+
+$body = @{
+    stack = "frontend"
+    level = "info"
+    package = "page"
+    message = "Testing logging middleware"
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+    -Uri "http://4.224.186.213/evaluation-service/logs" `
+    -Method Post `
+    -Headers $headers `
+    -Body $body
