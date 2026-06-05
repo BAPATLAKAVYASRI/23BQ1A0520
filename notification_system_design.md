@@ -116,7 +116,7 @@
 
 *4. Placement - Marriott International Inc. hiring - 2026-06-04 20:05:01*
 
-*5. Placement - Meta Platforms Inc. hiring - 2026-06-04 19:07:16*
+*5. Placement - Meta Platforms  Inc. hiring - 2026-06-04 19:07:16*
 
 *6. Placement - PayPal Holdings Inc. hiring - 2026-06-04 14:06:31*
 
